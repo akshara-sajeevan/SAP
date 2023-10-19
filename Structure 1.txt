@@ -1,0 +1,12 @@
+REPORT ZAKSHARA_STRUCTURE.
+
+DATA  v_matnr TYPE makt-matnr.
+
+DATA : BEGIN  OF st_makt,
+      matnr TYPE makt-matnr,
+      spras TYPE makt-spras,
+      maktx TYPE makt-maktx,
+    END OF st_makt.
+
+    v_matnr = '23'.
+    WRITE v_matnr.

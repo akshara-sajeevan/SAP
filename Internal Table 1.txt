@@ -1,0 +1,44 @@
+INTERNAL TABLE
+
+
+TYPES : BEGIN OF ty_makt,
+           matnr TYPE makt-matnr,
+           spras TYPE makt-spras,
+           maktx TYPE makt-maktx,
+        END OF ty_makt.
+
+DATA : it_makt TYPE TABLE OF ty_makt,
+TYPES 
+       wa_makt LIKE LINE OF it_makt.
+
+wa_makt-matnr = '100'.
+wa_makt
+-spras = 'E'.
+wa_makt-maktx = 'Pen'.
+APPEND wa_makt TO it_makt.
+
+wa_makt-matnr = '200'.
+wa_makt-spras = 'E'.
+wa_makt-maktx = 'Pencil'.
+APPEND wa_makt TO it_makt.
+
+wa_makt-matnr = '200'.
+wa_makt-spras = 'D'.
+wa_makt-maktx = 'Pencil'.
+APPEND wa_makt TO it_makt.
+
+wa_makt-matnr = '300'.
+wa_makt-spras = 'E'.
+wa_makt-maktx = 'Book'.
+APPEND wa_makt TmaO it_makt.
+
+wa_makt-matnr = '500'.
+wa_makt-spras = 'E'.
+wa_makt-maktx = 'Pen Holder'.
+APPEND wa_makt TO it_makt.
+
+CLEAR wa_makt.
+READ TABLE it_makt INTO wa_makt INDEX 4.
+READ TABLE it_makt INTO wa_makt WITH KEY matnr = '200' spras = 'D' .
+
+WRITE wa_makt.

@@ -1,0 +1,40 @@
+*&---------------------------------------------------------------------*
+REPORT ZAKSHARA_DEMO.
+
+
+TYPES : BEGIN OF ty_marc,
+        matnr TYPE marc-matnr,
+        werks TYPE marc-werks,
+  END OF ty_marc.
+
+
+
+TYPES : BEGIN OF ty_makt,
+    matnr TYPE makt-matnr,
+    spras TYPE makt-spras,
+    maktx TYPE makt-maktx,
+  END OF ty_makt.
+
+
+
+DATA : it_marc TYPE table of ty_marc,
+      wa_marc like LINE OF it_marc,
+      it_makt TYPE table of ty_makt,
+      wa_makt LIKE LINE OF it_makt.
+
+
+
+PARAMETERS p_werks TYPE marc-werks.
+
+
+
+SELECT-OPTIONS s_werks for wa_marc-werks.
+
+
+
+SELECT matnr werks from marc into TABLE it_marc where werks in s_werks.
+SELECT matnr spras maktx from makt into TABLE it_makt FOR ALL ENTRIES IN it_marc where matnr eq it_marc-matnr.
+LOOP at it_marc into wa_marc.
+  READ TABLE it_makt INTO wa_makt WITH KEY matnr = wa_marc-matnr spras = sy-langu.
+  WRITE : / wa_marc-matnr, wa_marc-werks, wa_makt-maktx.
+  ENDLOOP.
