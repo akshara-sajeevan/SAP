@@ -1,0 +1,34 @@
+*&---------------------------------------------------------------------*
+*& Report ZAKSHARA_INTERNAL_TABLE
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZAKSHARA_INTERNAL_TABLE.
+
+TYPES :BEGIN OF ty_makt,
+        matnr TYPE makt-matnr,
+        spras TYPE makt-spras,
+        maktx TYPE makt-maktx,
+        maktg TYPE makt-maktg,
+  END OF ty_makt.
+
+  DATA : it_makt TYPE TABLE OF ty_makt,
+        wa_makt LIke LINE OF it_makt.
+
+  wa_makt-matnr = '100'.
+  wa_makt-spras = 'E'.
+  wa_makt-maktx = 'Akshara'.
+  APPEND wa_makt to it_makt.
+
+   wa_makt-matnr = '200'.
+  wa_makt-spras = 'F'.
+  wa_makt-maktx = 'Akshara'.
+  APPEND wa_makt to it_makt.
+
+   wa_makt-matnr = '300'.
+  wa_makt-spras = 'D'.
+  wa_makt-maktx = 'Akshara'.
+  APPEND wa_makt to it_makt.
+
+READ TABLE it_makt INTO wa_makt WITH KEY maktx = 'Akshara'.
+ WRITE wa_makt.

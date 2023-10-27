@@ -1,0 +1,25 @@
+REPORT ZAKSHARA_MSG.
+
+DATA : it_makt TYPE STANDARD TABLE OF makt,
+       wa_makt LIKE LINE OF it_makt.
+
+
+
+PARAMETERS p_matnr TYPE makt-matnr.
+
+
+
+SELECT * FROM makt INTO TABLE it_makt WHERE matnr EQ p_matnr.
+  if sy-subrc IS NOT INITIAL.
+
+    MESSAGE e000(zakshara_message).
+
+
+
+    ENDIF.
+
+
+
+  LOOP AT it_makt INTO wa_makt.
+    WRITE : / wa_makt-matnr, wa_makt-spras, wa_makt-maktx.
+    ENDLOOP.

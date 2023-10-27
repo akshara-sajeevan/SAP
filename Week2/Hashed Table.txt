@@ -1,0 +1,47 @@
+*&---------------------------------------------------------------------*
+*& Report ZAKSHARA_HASHED_TABLE
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZAKSHARA_HASHED_TABLE.
+
+TYPES :BEGIN OF ty_makt,
+  matnr TYPE makt-matnr,
+  spras TYPE makt-spras,
+  maktx TYPE makt-maktx,
+*  maktg TYPE makt-maktg,
+  END OF TY_MAKT.
+
+
+
+data : it_makt TYPE HASHED TABLE OF ty_makt WITH UNIQUE KEY matnr,
+      wa_makt like LINE OF it_makt.
+
+
+
+  wa_makt-matnr = '400'.
+  wa_makt-spras = 'E'.
+  wa_makt-maktx = 'Akshara'.
+  insert wa_makt into table it_makt.
+
+
+
+   wa_makt-matnr = '200'.
+  wa_makt-spras = 'F'.
+  wa_makt-maktx = 'Akshara'.
+  insert wa_makt into table it_makt.
+
+
+
+   wa_makt-matnr = '300'.
+  wa_makt-spras = 'D'.
+  wa_makt-maktx = 'Akshara'.
+  insert wa_makt into table it_makt.
+
+
+
+*  READ TABLE it_makt INTO wa_makt with key matnr = '100'  BINARY SEARCH.
+sort it_makt by matnr.
+  loop at it_makt into wa_makt.
+    write : wa_makt.
+    endloop.
