@@ -1,0 +1,24 @@
+*&---------------------------------------------------------------------*
+*& Report ZAKSHARA_OOP_PROCEDURE_PRGM
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZAKSHARA_OOP_PROCEDURE_PRGM.
+
+DATA V_DOC TYPE I.
+
+CALL FUNCTION 'ZAKSHARA_OOP_PROCEDURE'
+ IMPORTING
+   NEXT_NUMBER       = V_DOC
+          .
+
+CALL FUNCTION 'ZAKSHARA_OOP_PROCEDURE'
+ IMPORTING
+   NEXT_NUMBER       =  V_DOC
+          .
+CALL FUNCTION 'ZAKSHARA_OOP_PROCEDURE'
+ IMPORTING
+   NEXT_NUMBER       = V_DOC
+          .
+
+WRITE V_DOC.

@@ -1,0 +1,94 @@
+*&---------------------------------------------------------------------*
+*& Report ZAKSHARA_OOP
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZAKSHARA_OOP.
+
+CLASS lcl_counter DEFINITION.
+
+  PUBLIC SECTION.
+
+  DATA v_count TYPE i.
+
+  METHODS next_num EXPORTING number TYPE i.
+
+ENDCLASS.
+
+CLASS lcl_counter IMPLEMENTATION.
+
+  METHOD next_num.
+
+    number = v_count + 1.
+
+    v_count = number.
+
+    ENDMETHOD.
+
+  ENDCLASS.
+
+  DATA v_data TYPE i.
+
+  DATA v_tag TYPE i.
+
+  DATA o_data TYPE REF TO ZCL_AKSHARA_GLOBAL.
+
+  DATA o_tag TYPE REF TO lcl_counter.
+
+START-OF-SELECTION.
+
+CREATE OBJECT o_data.
+
+CREATE OBJECT o_tag.
+
+o_data->next_number(
+
+   IMPORTING
+
+     number = v_data
+
+).
+
+o_tag->next_num(
+
+   IMPORTING
+
+     number = v_tag
+
+).
+
+  o_tag->next_num(
+
+   IMPORTING
+
+     number = v_tag
+
+).
+
+o_data->next_number(
+
+   IMPORTING
+
+     number = v_data
+
+).
+
+  o_tag->next_num(
+
+   IMPORTING
+
+     number = v_tag
+
+).
+
+o_data->next_number(
+
+   IMPORTING
+
+     number = v_data
+
+).
+
+Write v_data.
+
+write v_tag.
