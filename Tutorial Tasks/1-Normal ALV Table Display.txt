@@ -1,0 +1,63 @@
+*&---------------------------------------------------------------------*
+*& Report ZAKSHARA_ZEVOLVE1
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZAKSHARA_ZEVOLVE1.
+
+CLASS lcl_report DEFINITION.
+
+   PUBLIC SECTION.
+
+  TYPES: BEGIN OF ty_vbak,
+           vbeln TYPE vbak-vbeln,
+           erdat TYPE erdat,
+           auart TYPE auart,
+           kunnr TYPE kunnr,
+           END   OF ty_vbak.
+
+    DATA: t_vbak TYPE STANDARD TABLE OF ty_vbak.
+    DATA: o_alv TYPE REF TO cl_salv_table.
+
+    METHODS:
+    get_data,
+
+     generate_output.
+
+    ENDCLASS.
+
+    START-OF-SELECTION.
+  DATA: lo_report TYPE REF TO lcl_report.
+
+  CREATE OBJECT lo_report.
+
+  lo_report->get_data( ).
+
+  lo_report->generate_output( ).
+
+  CLASS lcl_report IMPLEMENTATION.
+
+  METHOD get_data.
+*   data selection
+    SELECT vbeln erdat auart kunnr
+           INTO  TABLE t_vbak
+           FROM  vbak
+           UP TO 20 ROWS.
+*
+  ENDMETHOD.
+
+  METHOD generate_output.
+
+    DATA: lx_msg TYPE REF TO cx_salv_msg.
+    TRY.
+        cl_salv_table=>factory(
+          IMPORTING
+            r_salv_table = o_alv
+          CHANGING
+            t_table      = t_vbak ).
+      CATCH cx_salv_msg INTO lx_msg.
+    ENDTRY.
+
+       o_alv->display( ).
+     ENDMETHOD.
+     ENDCLASS.
