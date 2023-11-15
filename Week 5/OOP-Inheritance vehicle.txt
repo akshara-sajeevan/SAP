@@ -1,0 +1,17 @@
+*&---------------------------------------------------------------------*
+*& Report ZAKSHARA_OOP_INHERITENCE
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZAKSHARA_OOP_INHERITENCE.
+
+data : o_bus TYPE REF TO ZCL_AKSHARA_BUS.
+DATA o_truck TYPE REF TO ZCL_AKSHARA_TRUCK.
+DATA o_acc TYPE REF TO ZCL_AKSHARA_ACCOUNT.
+
+CREATE OBJECT : o_acc, o_bus, o_truck.
+
+o_acc->calculate_fuel_cost( ovehicle = o_truck ).
+o_acc->calculate_fuel_cost( ovehicle = o_bus ).
+
+write 'end'.

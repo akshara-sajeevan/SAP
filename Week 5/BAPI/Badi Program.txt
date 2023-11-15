@@ -1,0 +1,17 @@
+*&---------------------------------------------------------------------*
+*& Report ZAKSHARA_BADI_PRGRM
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZAKSHARA_BADI_PRGRM.
+
+DATA O_BADI TYPE REF TO ZAKSHARA_BADI_DEF.
+PARAMETERS P_CTRY TYPE C LENGTH 2.
+
+GET BADI O_BADI
+FILTERS
+COUNTRY = P_CTRY.
+
+CALL BADI O_BADI->CALCULATE_GST.
+
+WRITE 'END'.

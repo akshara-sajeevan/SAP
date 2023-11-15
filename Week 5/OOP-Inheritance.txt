@@ -1,0 +1,15 @@
+*&---------------------------------------------------------------------*
+*& Report ZAKSHARA_OOP_INHERITENCE1
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZAKSHARA_OOP_INHERITENCE1.
+
+data : o_super type ref to ZCL_AKSHARA_SUPER1,
+      o_sub TYPE REF TO ZCL_AKSHARA_SUB2.
+
+CREATE OBJECT : o_super, o_sub.
+
+o_super->get_mileage( ).
+o_sub->get_mileage( ).
+o_sub->get_seats( ).

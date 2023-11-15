@@ -1,0 +1,19 @@
+FUNCTION ZBAPI_AKSHARA_FM.
+*"----------------------------------------------------------------------
+*"*"Local Interface:
+*"  IMPORTING
+*"     VALUE(IM_MATNR) TYPE  ZAKSHARA_S_MAKT-MATERIAL
+*"  EXPORTING
+*"     VALUE(MAT_DATA) TYPE  ZAKSHARA_S_MAKT
+*"     VALUE(RETURN) TYPE  BAPIRET2
+*"----------------------------------------------------------------------
+SELECT SINGLE MATNR SPRAS MAKTX FROM MAKT INTO MAT_DATA WHERE MATNR EQ IM_MATNR.
+ IF SY-SUBRC IS NOT INITIAL.
+   RETURN-TYPE = 'E'.
+   RETURN-MESSAGE = 'INVALID MATERIAL'.
+   ENDIF.
+
+
+
+
+ENDFUNCTION.
